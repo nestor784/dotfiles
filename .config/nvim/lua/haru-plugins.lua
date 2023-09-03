@@ -59,7 +59,5 @@ return require('packer').startup(function()
 	use {'pianocomposer321/project-templates.nvim', run=':PackerUpdate'}
 
 	-- Terminal 
-	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-  			require("toggleterm").setup()
-		end}
+	use {"akinsho/toggleterm.nvim", tag = '*'}
 end)

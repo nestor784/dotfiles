@@ -14,5 +14,7 @@ vim.api.nvim_create_autocmd('FileType', {
 map.set('n','<C-s>','<Plug>MarkdownPreview')
 map.set('n','<M-s>','<Plug>MarkdownPreviewStop')
 map.set('n','<C-p>','<Plug>MarkdownPreviewToggle')
-
-
+map.set('n','<C-j>','<C-w>j')
+map.set('n','<C-k>','<C-w>k')
+map.set('n','<C-h>','<C-w>h')
+map.set('n','<C-l>','<C-w>l')
