@@ -148,8 +148,7 @@ alias ls="lsd"
 alias lt="ls --tree"
 alias la="ls -a"
 alias lla="ls -la"
-source ~/.bash_completion/alacritty
-source ~/.config/alacritty/.ls_config
+source ./.ls_config
 
 alias dotfiles_repo="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 

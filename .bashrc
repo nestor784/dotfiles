@@ -1,1 +1,1 @@
-source ~/.config/alacritty/.bash_setup
+source ~/.config/kitty/.bash_setup
