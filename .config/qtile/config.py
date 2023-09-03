@@ -278,13 +278,14 @@ def init_widgets_list():
     return widgets_list
 
 def init_screens():
+    wallpaper_folder = '~/.config/qtile/wallpapers/'
     options = {
             'size' : 35,
             'opacity' : 0.9,
             'margin':[5,10,0,10],
             }
     wallpaper = {
-            'wallpaper': '~/.config/qtile/wallpaper-alicization.png',
+            'wallpaper': wallpaper_folder + 'kotonoha_no_niwa.jpg',
             'wallpaper_mode':'fill',
             }
     return [Screen(top=bar.Bar(widgets=init_widgets_list(),**options),**wallpaper)]
@@ -335,3 +336,10 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+os_init_commands = [
+        'exec picom &',
+        ] 
+
+for command in os_init_commands:
+    os.system(command)

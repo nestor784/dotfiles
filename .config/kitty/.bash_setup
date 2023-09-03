@@ -148,8 +148,24 @@ alias ls="lsd"
 alias lt="ls --tree"
 alias la="ls -a"
 alias lla="ls -la"
-source ./.ls_config
+source ~/.config/kitty/.ls_config
 
-alias dotfiles_repo="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+dotscmd="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dotfiles_repo="$dotscmd"
 
-clear && echo " " | toilet -t -f larry3d " a l i c e " -F border -F rainbow
+config_folders=(alacritty kitty neofetch qutebrowser nvim qtile rofi)
+config_folders_str=""
+for item in "${config_folders[@]}"; do
+	config_folders_str+=".config/$item/ "
+done
+
+addrepo="$dotscmd add .bash_profile .bashrc .xinitrc $config_folders_str"
+commitrepo="$dotscmd commit -m 'updates'"
+pushrepo="$dotscmd push origin main"
+
+alias dotfiles_repo_add="$addrepo"
+alias dotfiles_repo_commit="$commitrepo"
+alias dotfiles_repo_push="$pushrepo"
+
+# clear && echo " " | toilet -t -f larry3d " a l i c e " -F border -F rainbow
+clear && neofetch
