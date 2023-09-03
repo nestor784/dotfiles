@@ -338,7 +338,7 @@ wl_input_rules = None
 wmname = "LG3D"
 
 os_init_commands = [
-        'exec picom &',
+        'exec picom --config $HOME/.config/qtile/picom.conf &',
         ] 
 
 for command in os_init_commands:
