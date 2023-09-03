@@ -1,5 +1,7 @@
 {
-  "python.jediEnabled": false,
+  "eslint.probe":["javascript","html","python","markdown"],
+  "python.pythonPath": "/home/nestor/.pyenv/versions/py3nvim/bin/python",
+  "python.jediEnabled": true,
   "coc.preferences.jumpCommand": "tab drop",
   "diagnostic.enableMessage": "never",
   "diagnostic.virtualText": true,
@@ -37,11 +39,25 @@
   "cSpell.userWords": [
     "Baire",
     "Borel",
+    "Sarthak",
     "Topológicos",
     "boreliano",
     "borelianos",
     "topología"
   ],
+  "cSpell.enabledLanguageIds": [
+        "csharp",
+	"cpp",
+        "go",
+        "javascript",
+        "markdown",
+        "php",
+        "python",
+	"html",
+        "plaintext",
+        "typescript",
+        "yml"
+    ],
   "snippets.extends": {
   	"htmldjango": ["html, css, javascript"] 
 	},
