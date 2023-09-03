@@ -173,16 +173,45 @@ EndSection
 ```
 ##### Compositor picom
 
-Añadir a .xinitrc
+
+Añadir a .config/qtile/config.py
 ```sh
-exec picom --config $HOME/.config/qtile/picom.conf &
+os.system("exec picom --config $HOME/.config/qtile/picom.conf &"
 ```
-#### Lanzador de aplicaciones
+##### Lanzador de aplicaciones
+
+Install rofi
+
 ```sh
 pacman -S rofi
 rofi-theme-selector
 ```
+##### sddm
 
+Install and create config file
+
+```sh
+pacman -S sddm
+yay -S sddm-sugar-dark
+systemctl enable sddm
+sddm --example-config > /etc/sddm.conf.d/sddm.conf
+```
+
+Config `/etc/sddm.conf.d/sddm.conf`
+
+```conf
+[Theme]
+# Current theme name
+Current=sugar-dark
+```
+Config `/usr/share/sddm/themes/sugar-dark/theme.conf`
+```conf
+[General]
+
+Background="*path-background-image.png"
+...
+MainColor="deepskyblue"
+```
 
 
 ## MATH books
