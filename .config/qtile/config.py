@@ -204,6 +204,8 @@ def init_widgets_list():
                 this_current_screen_border = colors[4],
                 active = colors[3],
                 inactive = colors[2],
+                disable_drag = True,
+                urgent_alert_method = 'text',
                 ),
             sep,
             nerd_icon(' ',colors[5]),
@@ -335,7 +337,7 @@ wl_input_rules = None
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = "qtile" #LG3D
 
 os_init_commands = [
         'exec picom --config $HOME/.config/qtile/picom.conf &',
