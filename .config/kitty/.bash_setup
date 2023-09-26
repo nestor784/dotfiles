@@ -13,7 +13,7 @@ export OSH='/home/nestor/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="robbyrussell"
+OSH_THEME="rr" #"robbyrussell"
 #OSH_THEME="absimple"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -78,7 +78,7 @@ OSH_THEME="robbyrussell"
 OMB_USE_SUDO=true
 
 # To enable/disable display of Python virtualenv and condaenv
-# OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
+OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
 # OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
 
 # Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
@@ -106,6 +106,7 @@ aliases=(
 plugins=(
   git
   bashmarks
+  pyenv
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -166,6 +167,7 @@ pushrepo="$dotscmd push origin main"
 alias dotfiles_repo_add="$addrepo"
 alias dotfiles_repo_commit="$commitrepo"
 alias dotfiles_repo_push="$pushrepo"
+alias takeshot="import -window root .screenshots/$(date +%N).jpg"
 
 # clear && echo " " | toilet -t -f larry3d " a l i c e " -F border -F rainbow
 clear && neofetch

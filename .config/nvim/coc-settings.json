@@ -1,7 +1,7 @@
 {
   "eslint.probe":["javascript","html","python","markdown"],
-  "python.pythonPath": "/home/nestor/.pyenv/versions/py3nvim/bin/python",
-  "python.jediEnabled": true,
+  //"python.pythonPath": "/home/nestor/.pyenv/versions/py3nvim/bin/python",
+  //"python.jediEnabled": true,
   "coc.preferences.jumpCommand": "tab drop",
   "diagnostic.enableMessage": "never",
   "diagnostic.virtualText": true,
@@ -62,4 +62,10 @@
   	"htmldjango": ["html, css, javascript"] 
 	},
   "emmet.includeLanguages": { "htmldjango" : "html"},
+  "pyright.enable": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoSearchPaths": true,
+  "python.pythonPath": "/home/nestor/.pyenv/versions/py3nvim/bin/python",
+  "python.formatting.provider":"autopep8",
+  "python.formatting.blackPath": "black",
 }

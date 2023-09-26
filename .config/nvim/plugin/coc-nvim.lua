@@ -6,7 +6,7 @@ g.coc_global_extensions = {
 	'coc-html',
 	'coc-htmldjango',
 	'coc-clangd',
-	'coc-python',
+	'coc-pyright',
 	'coc-prettier',
 	'coc-eslint',
 	'coc-json',
