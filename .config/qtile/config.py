@@ -34,7 +34,15 @@ terminal = "kitty" # guess_terminal()
 
 @lazy.function
 def run_rofi(qtile):
-    os.system("rofi -show drun")
+    os.system("exec ~/.config/rofi/scripts/launcher_t4")
+
+@lazy.function
+def run_powermenu(qtile):
+    os.system("exec ~/.config/rofi/scripts/powermenu_t1")
+
+@lazy.function
+def takescreenshot(qtile):
+    os.system("import -window root .screenshots/$(date +%N).jpg")
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -90,10 +98,11 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "control"], "q", run_powermenu ,desc="Run powermenu"),# lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([],"XF86AudioRaiseVolume",lazy.widget["pulsevolume"].increase_vol(), desc="Increase volume"),
     Key([],"XF86AudioLowerVolume",lazy.widget["pulsevolume"].decrease_vol(), desc="Decrease volume"),
+    Key([],"Print",takescreenshot, desc="Take a screenshot")
 ]
 
 groups = [Group(i,label=k) for i,k in zip('0123',[' M',' 1',' 2',' 3',])]
