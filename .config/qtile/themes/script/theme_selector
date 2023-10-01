@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+## Author: Nestor
+#
+## Rofi : Qtile theme selector
+#
+## Themes
+#
+## alice 
+
+dir="$HOME/.config/qtile/themes/script"
+theme='window_style'
+
+# CMDs
+bodytext="Choose the theme:"
+
+# Options
+alice=' Alice'
+ttgl=' Tengen Toppan Gurren Lagann'
+hack=' Hack'
+yes=' Yes'
+no=' No'
+
+# Commands
+cmdalice="echo -e \"from . import alice\nclass Theme(alice.Alice):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
+
+cmdttgl="echo -e \"from . import ttgl\nclass Theme(ttgl.Ttgl):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
+
+cmdhack="echo -e \"from . import hack\nclass Theme(hack.Hack):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
+
+# Interfaz
+rofi_cmd() {
+	rofi -dmenu \
+		-p "$bodytext" \
+		-mesg "$bodytext" \
+		-theme ${dir}/${theme}.rasi
+}
+
+run_rofi() {
+	echo -e "$alice\n$ttgl\n$hack" | rofi_cmd
+}
+
+confirm_cmd() {
+	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 250px;}' \
+		-theme-str 'mainbox {children: [ "message", "listview" ];}' \
+		-theme-str 'listview {columns: 2; lines: 1;}' \
+		-theme-str 'element-text {horizontal-align: 0.5;}' \
+		-theme-str 'textbox {horizontal-align: 0.5;}' \
+		-dmenu \
+		-p 'Confirmation' \
+		-mesg 'Are you Sure?' \
+		-theme ${dir}/${theme}.rasi
+}
+
+confirm_exit() {
+	echo -e "$yes\n$no" | confirm_cmd
+}
+
+run_cmd() {
+	selected="$(confirm_exit)"
+	if [[ "$selected" == "$yes" ]]; then
+		if [[ $1 == '--alice' ]]; then
+			eval $cmdalice 
+		elif [[ $1 == '--ttgl' ]]; then
+			eval $cmdttgl
+		elif [[ $1 == '--hack' ]]; then
+			eval $cmdhack 
+		fi
+	else
+		exit 0
+	fi
+}
+
+#Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+	$alice)
+		run_cmd --alice
+	;;
+	$ttgl)
+		run_cmd --ttgl
+	;;
+	$hack)
+		run_cmd --hack
+	;;
+esac

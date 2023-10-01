@@ -8,6 +8,7 @@ return require('packer').startup(function()
 	-- colorscheme
 	-- use 'sainnhe/gruvbox-material'
 	use 'folke/tokyonight.nvim'
+	-- use { "catppuccin/nvim", as = "catppuccin" }
 
 	-- lua line
 	use {   'nvim-lualine/lualine.nvim',
@@ -60,4 +61,7 @@ return require('packer').startup(function()
 
 	-- Terminal 
 	use {"akinsho/toggleterm.nvim", tag = '*'}
+
+	-- Hex colores highlighting
+	use 'norcalli/nvim-colorizer.lua'
 end)
