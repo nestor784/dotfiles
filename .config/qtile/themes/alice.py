@@ -24,13 +24,14 @@ class Alice():
                           background = self.colors["1"],
                           foreground = "#1c2034",
                           )
-    def nerd_icon(self,nerdfont_icon,fg_color):
+    def nerd_icon(self,nerdfont_icon,fg_color,size=15):
         return widget.TextBox(
                 font = 'Iosevka Nerd Font',
-                fontsize = 15,
+                fontsize = size,
                 text = nerdfont_icon,
                 foreground = fg_color,
                 background = self.colors["1"],
+                padding=4,
                 )
 
     def spacer(self):
@@ -72,6 +73,15 @@ class Alice():
                     font='Hack Nerd Font',
                     foreground=self.colors["2"],
                     background=self.colors["1"],
+                    show_short_text=False,
+                    ),
+                self.sep(),
+                widget.Prompt(
+                    fmt=" {}",
+                    prompt="",
+                    foreground = self.colors["3"],
+                    background = self.colors["1"],
+                    fontsize=14,
                     ),
                 widget.Spacer(length=bar.STRETCH,background=self.colors["1"]),
                 self.nerd_icon('󰃭 ',self.colors["5"]),
@@ -82,14 +92,9 @@ class Alice():
                     background=self.colors["1"],
                     ),
                 self.sep(),
-                self.nerd_icon('󰞷',self.colors["5"]),
-                widget.Prompt(
-                    fmt="{}",
-                    prompt="",
-                    foreground = self.colors["3"],
-                    background = self.colors["1"],
-                    fontsize=14,
-                    ),
+                self.nerd_icon(' ',self.colors["5"],size=13),
+                self.nerd_icon('󰣇 ',self.colors["5"],size=22),
+                self.nerd_icon(' ',self.colors["5"],size=4),
                 self.sep(),
                 self.nerd_icon(' ',self.colors["5"]),
                 widget.Clock(
@@ -132,7 +137,7 @@ class Alice():
                 'margin':[5,10,0,10],
                 }
         options2 = {
-                'wallpaper': wallpaper_folder+'kotonoha_no_niwa.jpg',
+                'wallpaper': wallpaper_folder+'alice3.jpg',
                 'wallpaper_mode':'fill',
                 }
 

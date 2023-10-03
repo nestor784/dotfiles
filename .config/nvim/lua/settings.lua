@@ -28,3 +28,6 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 o.termguicolors = true
 o.mouse = nil
+
+-- Lua initialization file
+vim.cmd [[colorscheme nightfly]]

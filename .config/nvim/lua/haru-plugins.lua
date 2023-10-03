@@ -7,8 +7,10 @@ return require('packer').startup(function()
 
 	-- colorscheme
 	-- use 'sainnhe/gruvbox-material'
-	use 'folke/tokyonight.nvim'
+	-- use 'folke/tokyonight.nvim'
 	-- use { "catppuccin/nvim", as = "catppuccin" }
+	-- use 'rktjmp/lush.nvim'
+	use { "bluz71/vim-nightfly-colors", as="nightfly" }
 
 	-- lua line
 	use {   'nvim-lualine/lualine.nvim',

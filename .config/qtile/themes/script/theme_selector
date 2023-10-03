@@ -15,9 +15,10 @@ theme='window_style'
 bodytext="Choose the theme:"
 
 # Options
-alice=' Alice'
-ttgl=' Tengen Toppan Gurren Lagann'
-hack=' Hack'
+alice='󰓥 ソードアート・オンライン'
+ttgl='󰿗 天元突破グレンラガン'
+hack=' コードギアス 反逆のルルーシュ'
+nice='󰩃 さくら荘のペットな彼女'
 yes=' Yes'
 no=' No'
 
@@ -28,6 +29,8 @@ cmdttgl="echo -e \"from . import ttgl\nclass Theme(ttgl.Ttgl):\n\tpass\" >| ~/.c
 
 cmdhack="echo -e \"from . import hack\nclass Theme(hack.Hack):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
 
+cmdnice="echo -e \"from . import nice\nclass Theme(nice.Nice):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
+
 # Interfaz
 rofi_cmd() {
 	rofi -dmenu \
@@ -37,7 +40,7 @@ rofi_cmd() {
 }
 
 run_rofi() {
-	echo -e "$alice\n$ttgl\n$hack" | rofi_cmd
+	echo -e "$alice\n$ttgl\n$hack\n$nice" | rofi_cmd
 }
 
 confirm_cmd() {
@@ -61,10 +64,28 @@ run_cmd() {
 	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--alice' ]]; then
 			eval $cmdalice 
+			echo -e "export LS_COLORS=\"\$(vivid generate snazzy)\"" >| ~/.config/kitty/.ls_config
+			ln -sf ~/.config/neofetch/themes/alice ~/.config/neofetch/config.conf
+			ln -sf ~/.config/kitty/kitty-themes/themes/Tokyo\ Night\ Storm.conf ~/.config/kitty/theme.conf
+			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
 		elif [[ $1 == '--ttgl' ]]; then
 			eval $cmdttgl
+			echo -e "export LS_COLORS=\"\$(vivid generate lava)\"" >| ~/.config/kitty/.ls_config
+			ln -sf ~/.config/neofetch/themes/ttgl ~/.config/neofetch/config.conf
+			ln -sf ~/.config/kitty/kitty-themes/themes/Earthsong.conf ~/.config/kitty/theme.conf
+			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
 		elif [[ $1 == '--hack' ]]; then
 			eval $cmdhack 
+			echo -e "export LS_COLORS=\"\$(vivid generate catppuccin-frappe)\"" >| ~/.config/kitty/.ls_config
+			ln -sf ~/.config/neofetch/themes/hack ~/.config/neofetch/config.conf
+			ln -sf ~/.config/kitty/kitty-themes/themes/Lavandula.conf ~/.config/kitty/theme.conf
+			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
+		elif [[ $1 == '--nice' ]]; then
+			eval $cmdnice 
+			echo -e "export LS_COLORS=\"\$(vivid generate gruvbox-light-hard)\"" >| ~/.config/kitty/.ls_config
+			ln -sf ~/.config/neofetch/themes/nice ~/.config/neofetch/config.conf
+			ln -sf ~/.config/kitty/kitty-themes/themes/gruvbox_light.conf ~/.config/kitty/theme.conf
+			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
 		fi
 	else
 		exit 0
@@ -82,5 +103,8 @@ case ${chosen} in
 	;;
 	$hack)
 		run_cmd --hack
+	;;
+	$nice)
+		run_cmd --nice
 	;;
 esac

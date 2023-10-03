@@ -5,137 +5,150 @@ from libqtile.lazy import lazy
 
 
 class Ttgl():
-    groups_labels =  ['0123',[' M',' 1',' 2',' 3',]]
+    groups_labels =  ['12345',[' ',' ',' ','󰝚 ',' ']]
     colors = {
-            "b_focus":["#7d85a8","#7d85a8"],
-            "b_normal":["#0e101a","#0e101a"],
-            "0":["#0e101a", "#0e101a"],
-            "1":["#0e101a", "#0e101a"],
-            "2":["#eceef3", "#eceef3"],
-            "3":["#ea8538", "#ea8538"],
-            "4":["#84e45b", "#84e45b"],
-            "5":["#005000", "#005000"],
+            "b_focus":["#C88740","#C88740"],
+            "b_normal":["#140F15","#140F15"],
+            "1":["#140F15", "#140F15"],
+            "2":["#C68526", "#C68526"],
+            "3":["#A12807", "#A12807"],
+            "4":["#F0D5B6", "#F0D5B6"],
+            "5":["#FFAD00", "#FFAD00"],
+            "6":["#DBA96D", "#DBA96D"],
+            "7":["#3F231E","#3F231E"],
+            "8":["#E4D0CB","#E4D0CB"],
             }
 
     def sep(self):
-        return widget.Sep(size_percent = 60,
-                          margin = 5,
-                          linewidth = 2,
-                          background = self.colors["1"],
-                          foreground = "#1c2034",
-                          )
-    def nerd_icon(self,nerdfont_icon,fg_color):
         return widget.TextBox(
-                font = 'Iosevka Nerd Font',
                 fontsize = 15,
-                text = nerdfont_icon,
-                foreground = fg_color,
+                text = " 󰇙 ",
+                foreground = self.colors["2"],
                 background = self.colors["1"],
                 )
 
-    def spacer(self):
-        return widget.Spacer(
-                length = 5,
-                background = self.colors["1"],
+    def nerd_icon(self,icon,fg,bg,size=15,callback={}):
+        return widget.TextBox(
+                fontsize = size,
+                text = icon,
+                foreground = fg,
+                background = bg,
+                padding=0,
+                mouse_callbacks=callback,
+                )
+
+    def spacer(self,fg,bg, d=True):
+        if d:
+            t = " "
+        else:
+            t = " "
+        return widget.TextBox(
+                fontsize = 22,
+                text = t,
+                foreground = fg,
+                background = bg,
+                padding=-1,
                 )
 
     @staticmethod
     def widget_defaults():
         return dict(
-                font="Iosevka Nerd Font",
+                font="Hurmit Nerd Font",
                 fontsize=12,
-                padding=5,
+                padding=0,
                 )
 
 
     def init_widgets_list(self):
+        archico = {
+                'icon':" 󰣇 ",
+                'fg':self.colors["8"],
+                'bg':self.colors["7"],
+                'callback':{'Button1': lambda : qtile.cmd_spawn('kitty'),}
+                }
         widgets_list = [
-                self.spacer(),
+                self.nerd_icon(**archico),
+                self.spacer(fg=self.colors["7"],bg=self.colors["3"]),
+                widget.Battery(
+                    format='{char} {percent:.0%} ',
+                    foreground=self.colors["1"],
+                    background=self.colors["3"],
+                    full_char=' ',
+                    charge_char=" ",
+                    discharge_char=" ",
+                    empty_char=" ",
+                    update_interval=2,
+                    show_short_text=False,
+                    ),
+                self.spacer(fg=self.colors["3"],bg=self.colors["5"]),
+                widget.Clock(
+                    fmt="{}",
+                    format="%d %B %Y 󰇙 %I:%M %p",
+                    foreground=self.colors["1"],
+                    background=self.colors["5"],
+                    ),
+                self.spacer(fg=self.colors["5"],bg=self.colors["1"]),
+                widget.Spacer(length=bar.STRETCH,background=self.colors["1"]),
                 widget.GroupBox(
-                    fontsize=12,
+                    fontsize=15,
                     foreground = self.colors["2"],
                     background = self.colors["1"],
                     borderwidth = 4,
                     highlight_method = "text",
-                    this_current_screen_border = self.colors["4"],
-                    active = self.colors["3"],
+                    this_current_screen_border = self.colors["6"],
+                    active = self.colors["2"],
                     inactive = self.colors["2"],
                     disable_drag = True,
                     urgent_alert_method = 'text',
-                    ),
-                self.sep(),
-                self.nerd_icon(' ', self.colors["5"]),
-                widget.Battery(
-                    low_foreground=self.colors["3"],
-                    low_percentage=0.2,
-                    format='{percent:.0%}',
-                    font='Hack Nerd Font',
-                    foreground=self.colors["2"],
-                    background=self.colors["1"],
+                    urgent_text = self.colors["3"]
                     ),
                 widget.Spacer(length=bar.STRETCH,background=self.colors["1"]),
-                self.nerd_icon('󰃭 ',self.colors["5"]),
-                widget.Clock(
-                    fmt="{}",
-                    format="%d %B %Y",
-                    foreground=self.colors["2"],
-                    background=self.colors["1"],
+                self.spacer(fg=self.colors["4"],bg=self.colors["1"],d=False),
+                widget.WindowName(
+                    background = self.colors["4"],
+                    foreground = self.colors["1"],
+                    fmt = "  {}",
+                    empty_group_string="nestor",
+                    scroll=True,
+                    width= 80,
+                    scroll_delay=1,
+                    scroll_interval=0.05,
+                    scroll_step=2,
                     ),
-                self.sep(),
-                self.nerd_icon('󰞷',self.colors["5"]),
-                widget.Prompt(
-                    fmt="{}",
-                    prompt="",
-                    foreground = self.colors["3"],
-                    background = self.colors["1"],
-                    fontsize=14,
-                    ),
-                self.sep(),
-                self.nerd_icon(' ',self.colors["5"]),
-                widget.Clock(
-                    fmt="{}",
-                    format="%I:%M %p",
-                    foreground=self.colors["2"],
-                    background=self.colors["1"],
-                    ),
-                widget.Spacer(length=bar.STRETCH,background=self.colors["1"]),
-                self.nerd_icon(' ',self.colors["5"]),
+                self.spacer(fg=self.colors["6"],bg=self.colors["4"],d=False),
                 widget.Net(
-                    format = "{down}↓↑{up}",
-                    foreground = self.colors["2"],
-                    background = self.colors["1"],
+                    format = " {up}{down}",
+                    foreground = self.colors["1"],
+                    background = self.colors["6"],
                     update_interval = 3,
                     mouse_callbacks = {
                         'Button1':lambda : qtile.cmd_spawn("networkmanager_dmenu")
                         }
                     ),
-                self.sep(),
-                self.nerd_icon('󰓃',self.colors["5"]),
+                self.spacer(fg=self.colors["2"],bg=self.colors["6"],d=False),
                 widget.PulseVolume(
-                    fmt='{}',
+                    fmt='󰕾 {}  ',
                     limit_max_volume=True,
-                    foreground=self.colors["2"],
-                    background=self.colors["1"],
+                    foreground=self.colors["1"],
+                    background=self.colors["2"],
                     ),
                 widget.Systray(
-                    background=self.colors["1"],
+                        icon_size=20,
+                        background=self.colors["2"],
                         ),
-                self.spacer(),
-                widget.QuickExit(),
                 ]
         return widgets_list
 
     def init_screens(self):
         wallpaper_folder = '~/.config/qtile/wallpapers/'
         options = {
-                'size' : 35,
-                'opacity' : 0.9,
-                'margin':[5,10,0,10],
+                'size' : 22,
+                'opacity' : 1,
+                'margin':[0,0,0,0],
                 }
         options2 = {
-                'wallpaper': wallpaper_folder+'kotonoha_no_niwa.jpg',
+                'wallpaper': wallpaper_folder+'ttgl.jpeg',
                 'wallpaper_mode':'fill',
                 }
 
         return [Screen(top=bar.Bar(widgets=self.init_widgets_list(),**options),**options2)]
-
