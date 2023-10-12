@@ -1,10 +1,12 @@
 local g = vim.g
+local map = vim.keymap
 
-g.vimtex_view_enabled = 1
+--g.vimtex_view_enabled = 1
 g.vimtex_view_method = 'zathura'
 
-g.vimtex_view_general_viewer = 'okular'
-g.vimtex_view_general_options = [['--unique file:@pdf\#src:@line@tex']]
+g.vimtex_context_pdf_viewer = 'okular'
+g.vimtex_quickfix_mode = 0
+g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
 
 g.vimtex_compiler_method = 'latexmk'
 
@@ -17,4 +19,6 @@ callback = function ()
 end
 })
 
+g.maplocalleader = ';'
+map.set('n','<localleader>ls','<Plug>(vimtex-view)')
 

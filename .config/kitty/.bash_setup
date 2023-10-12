@@ -133,7 +133,7 @@ source "$OSH"/oh-my-bash.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
+export PATH="/sbin:/usr/sbin:$PATH"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 

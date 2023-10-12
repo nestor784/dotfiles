@@ -18,7 +18,7 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'}, --, 'g:coc_status'},
+    lualine_a = {'mode', 'g:coc_status'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},

@@ -39,12 +39,21 @@
   "cSpell.userWords": [
     "Baire",
     "Borel",
+    "Inyectividad",
     "MOODLE",
     "Sarthak",
+    "Sobreyectividad",
     "Topológicos",
+    "biyectica",
     "boreliano",
     "borelianos",
-    "topología"
+    "fibrado",
+    "finitamente",
+    "linealmente",
+    "subespacio",
+    "submódulo",
+    "topología",
+    "ésima"
   ],
   "cSpell.enabledLanguageIds": [
         "csharp",
@@ -57,7 +66,9 @@
 	"html",
         "plaintext",
         "typescript",
-        "yml"
+        "yml",
+	"latex",
+	"tex",
     ],
   "snippets.extends": {
   	"htmldjango": ["html, css, javascript"] 

@@ -68,3 +68,10 @@ python -m venv .venv
 source .venv/bin/activate
 deactivate
 ```
+
+
+### Shortcuts
+
+* Vimtex
+Al presionar `;ls` se busca dicha linea de código en el PDF.
+Al presionar `<ctrl><left-click>` se busca dicho texto del PDF en el editor.

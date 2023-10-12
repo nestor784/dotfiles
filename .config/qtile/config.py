@@ -1,30 +1,32 @@
-import os
-from libqtile import bar, layout, widget, qtile, extension
+import os, subprocess
+from libqtile import hook, bar, layout, widget, qtile, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
+from core.keys import Keys
+from core.layouts import Layouts
+from core.theme import Theme
 
-from themes.pyq.keybindings import keymappings
-from themes.pyq.gl import init_groups, init_keyextend, init_layout_theme, init_layouts
-from themes.pyq.oscommands import init_oscommands
-from themes.selectedtheme import Theme
 
 mod = "mod4"
 terminal = "kitty"
-theme = Theme()
 
-keys = keymappings()
-groups = init_groups(theme.groups_labels)
-layout_theme = init_layout_theme(theme) 
-layouts = init_layouts(layout_theme)
-widget_defaults = theme.widget_defaults()
-extension_defaults = theme.widget_defaults()
-screens = theme.init_screens()
+obj_keys = Keys()
+obj_layouts = Layouts()
+obj_theme  = Theme()
+
+keys = obj_keys.keymappings()
+groups = obj_theme.init_groups()
+layout_theme = obj_layouts.init_layout_theme(obj_theme) 
+layouts = obj_layouts.init_layouts(layout_theme)
+widget_defaults = obj_theme.widget_defaults()
+extension_defaults = obj_theme.widget_defaults()
+screens = obj_theme.init_screens()
 
 
 
 for i in groups:
-    keys.extend(init_keyextend(i))
+    keys.extend(obj_keys.init_keyextend(i))
 
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
@@ -55,4 +57,7 @@ wl_input_rules = None
 wmname = "qtile" 
 
 # Session init commands
-init_oscommands()
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])

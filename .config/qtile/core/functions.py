@@ -16,4 +16,4 @@ def takescreenshot(qtile):
 
 @lazy.function
 def run_theme_manager(qtile):
-    os.system("exec ~/.config/qtile/themes/script/theme_selector")
+    os.system("exec ~/.config/qtile/scripts/theme_selector")

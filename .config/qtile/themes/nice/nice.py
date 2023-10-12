@@ -8,14 +8,15 @@ from qtile_extras.widget.decorations import RectDecoration
 
 
 
-class Hack():
-    groups_labels =  ['12345',[' ','󰊢 ',' ',' ',' ']]
+class Theme():
+    name = "Nice"
+    groups =  ['12345',[' ','󰊢 ',' ',' ',' ']]
     colors = {
-            "b_focus":["#C88740","#C88740"],
-            "b_normal":["#140F15","#140F15"],
+            "b_focus":["#f7b1bb","#f7b1bb"],
+            "b_normal":["#f4e7fc","#f4e7fc"],
             "1":"#d29ef2",
             "2":"#f4e7fc",
-            "3":"#720ab2",
+            "3":"#ff9b66",
             "4":"#eb8997",
             "5":"#c3f7f5",
             "6":"#99ea99",
@@ -27,6 +28,9 @@ class Hack():
             "12":"#310651",
             "13":"#dacee3",
             }
+
+    def init_groups(self):
+        return [Group(i,label=k) for i,k in zip(self.groups[0],self.groups[1])]
    
     @staticmethod
     def decor(color,radius):
@@ -173,7 +177,7 @@ class Hack():
                 self.sep(),
                 extrawidget.Clock(
                     fmt="{}",
-                    format=" %b %d %Y  %I:%M %p",
+                    format=" %b %d %Y | %I:%M %p",
                     foreground=self.colors["9"],
                     padding=12,
                     **clockdecor,
@@ -186,16 +190,10 @@ class Hack():
         return widgets_list
 
     def init_screens(self):
-        wallpaper_folder = '~/.config/qtile/wallpapers/'
         options = {
                 'size' : 30,
                 'background' : '#FFFFFF.0',
                 'opacity' : 1,
                 'margin':[5,7,0,7], 
                 }
-        options2 = {
-                'wallpaper': wallpaper_folder+'hack.png',
-                'wallpaper_mode':'fill',
-                }
-
-        return [Screen(top=extrabar.Bar(widgets=self.init_widgets_list(),**options),**options2)]
+        return [Screen(top=extrabar.Bar(widgets=self.init_widgets_list(),**options))]

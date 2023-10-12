@@ -4,8 +4,9 @@ from libqtile.lazy import lazy
 
 
 
-class Alice():
-    groups_labels =  ['0123',[' M',' 1',' 2',' 3',]]
+class Theme():
+    name = "Alice"
+    groups =  ['12345',[' ',' ',' ',' ',' ']]
     colors = {
             "b_focus":["#7d85a8","#7d85a8"],
             "b_normal":["#0e101a","#0e101a"],
@@ -16,6 +17,9 @@ class Alice():
             "4":["#84e45b", "#84e45b"],
             "5":["#2861d4", "#2861d4"],
             }
+
+    def init_groups(self):
+        return [Group(i,label=k) for i,k in zip(self.groups[0],self.groups[1])]
 
     def sep(self):
         return widget.Sep(size_percent = 60,
@@ -130,16 +134,10 @@ class Alice():
         return widgets_list
 
     def init_screens(self):
-        wallpaper_folder = '~/.config/qtile/wallpapers/'
         options = {
                 'size' : 35,
                 'opacity' : 0.9,
                 'margin':[5,10,0,10],
                 }
-        options2 = {
-                'wallpaper': wallpaper_folder+'alice3.jpg',
-                'wallpaper_mode':'fill',
-                }
-
-        return [Screen(top=bar.Bar(widgets=self.init_widgets_list(),**options),**options2)]
+        return [Screen(top=bar.Bar(widgets=self.init_widgets_list(),**options))]
 

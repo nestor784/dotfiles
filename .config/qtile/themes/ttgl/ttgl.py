@@ -4,8 +4,9 @@ from libqtile.lazy import lazy
 
 
 
-class Ttgl():
-    groups_labels =  ['12345',[' ',' ',' ','󰝚 ',' ']]
+class Theme():
+    name = "Ttgl"
+    groups =  ['12345',[' ',' ',' ','󰝚 ',' ']]
     colors = {
             "b_focus":["#C88740","#C88740"],
             "b_normal":["#140F15","#140F15"],
@@ -18,6 +19,9 @@ class Ttgl():
             "7":["#3F231E","#3F231E"],
             "8":["#E4D0CB","#E4D0CB"],
             }
+
+    def init_groups(self):
+        return [Group(i,label=k) for i,k in zip(self.groups[0],self.groups[1])]
 
     def sep(self):
         return widget.TextBox(
@@ -140,15 +144,9 @@ class Ttgl():
         return widgets_list
 
     def init_screens(self):
-        wallpaper_folder = '~/.config/qtile/wallpapers/'
         options = {
                 'size' : 22,
                 'opacity' : 1,
                 'margin':[0,0,0,0],
                 }
-        options2 = {
-                'wallpaper': wallpaper_folder+'ttgl.jpeg',
-                'wallpaper_mode':'fill',
-                }
-
-        return [Screen(top=bar.Bar(widgets=self.init_widgets_list(),**options),**options2)]
+        return [Screen(top=bar.Bar(widgets=self.init_widgets_list(),**options))]

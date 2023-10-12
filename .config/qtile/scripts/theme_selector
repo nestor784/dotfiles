@@ -8,7 +8,9 @@
 #
 ## alice 
 
-dir="$HOME/.config/qtile/themes/script"
+dir="$HOME/.config/qtile/scripts"
+dirthemes="$HOME/.config/qtile/themes"
+dircore="$HOME/.config/qtile/core"
 theme='window_style'
 
 # CMDs
@@ -21,15 +23,6 @@ hack=' コードギアス 反逆のルルーシュ'
 nice='󰩃 さくら荘のペットな彼女'
 yes=' Yes'
 no=' No'
-
-# Commands
-cmdalice="echo -e \"from . import alice\nclass Theme(alice.Alice):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
-
-cmdttgl="echo -e \"from . import ttgl\nclass Theme(ttgl.Ttgl):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
-
-cmdhack="echo -e \"from . import hack\nclass Theme(hack.Hack):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
-
-cmdnice="echo -e \"from . import nice\nclass Theme(nice.Nice):\n\tpass\" >| ~/.config/qtile/themes/selectedtheme.py";
 
 # Interfaz
 rofi_cmd() {
@@ -62,31 +55,41 @@ confirm_exit() {
 run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
+		killall picom
 		if [[ $1 == '--alice' ]]; then
-			eval $cmdalice 
+			yes | cp -rf ${dirthemes}/alice/alice.py ${dircore}/theme.py 
 			echo -e "export LS_COLORS=\"\$(vivid generate snazzy)\"" >| ~/.config/kitty/.ls_config
+			yes | cp -rf ${dirthemes}/alice/picom.conf ~/.config/picom/picom.conf
 			ln -sf ~/.config/neofetch/themes/alice ~/.config/neofetch/config.conf
 			ln -sf ~/.config/kitty/kitty-themes/themes/Tokyo\ Night\ Storm.conf ~/.config/kitty/theme.conf
-			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
+			feh --bg-fill --randomize ${dirthemes}/alice/wallpapers/*
 		elif [[ $1 == '--ttgl' ]]; then
-			eval $cmdttgl
+			yes | cp -rf ${dirthemes}/ttgl/ttgl.py ${dircore}/theme.py 
 			echo -e "export LS_COLORS=\"\$(vivid generate lava)\"" >| ~/.config/kitty/.ls_config
+			yes | cp -rf ${dirthemes}/ttgl/picom.conf ~/.config/picom/picom.conf
 			ln -sf ~/.config/neofetch/themes/ttgl ~/.config/neofetch/config.conf
 			ln -sf ~/.config/kitty/kitty-themes/themes/Earthsong.conf ~/.config/kitty/theme.conf
-			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
+			feh --bg-fill --randomize ${dirthemes}/ttgl/wallpapers/*
 		elif [[ $1 == '--hack' ]]; then
-			eval $cmdhack 
+			yes | cp -rf ${dirthemes}/hack/hack.py ${dircore}/theme.py 
 			echo -e "export LS_COLORS=\"\$(vivid generate catppuccin-frappe)\"" >| ~/.config/kitty/.ls_config
+			yes | cp -rf ${dirthemes}/hack/picom.conf ~/.config/picom/picom.conf
 			ln -sf ~/.config/neofetch/themes/hack ~/.config/neofetch/config.conf
 			ln -sf ~/.config/kitty/kitty-themes/themes/Lavandula.conf ~/.config/kitty/theme.conf
-			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
+			feh --bg-fill --randomize ${dirthemes}/hack/wallpapers/*
 		elif [[ $1 == '--nice' ]]; then
-			eval $cmdnice 
+			yes | cp -rf ${dirthemes}/nice/nice.py ${dircore}/theme.py 
 			echo -e "export LS_COLORS=\"\$(vivid generate gruvbox-light-hard)\"" >| ~/.config/kitty/.ls_config
+			yes | cp -rf ${dirthemes}/nice/picom.conf ~/.config/picom/picom.conf
 			ln -sf ~/.config/neofetch/themes/nice ~/.config/neofetch/config.conf
 			ln -sf ~/.config/kitty/kitty-themes/themes/gruvbox_light.conf ~/.config/kitty/theme.conf
-			qtile run-cmd qtile cmd-obj -o cmd -f reload_config
+			feh --bg-fill --randomize ${dirthemes}/nice/wallpapers/*
 		fi
+		picom --config $HOME/.config/picom/picom.conf &
+		sleep 0.5
+		sleep 1 && xdotool key --clearmodifiers super+ctrl+r
+		#qtile run-cmd qtile cmd-obj -o cmd -f reload_config
+		#qtile cmd-obj -o cmd -f reload_config
 	else
 		exit 0
 	fi
