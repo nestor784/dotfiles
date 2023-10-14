@@ -19,6 +19,10 @@ class Theme():
             "7":["#3F231E","#3F231E"],
             "8":["#E4D0CB","#E4D0CB"],
             }
+    
+    @lazy.function
+    def nextwallpaper(self):
+        os.system("exec feh --bg-fill --randomize ~/.config/qtile/themes/ttgl/wallpapers/*")
 
     def init_groups(self):
         return [Group(i,label=k) for i,k in zip(self.groups[0],self.groups[1])]
@@ -68,7 +72,7 @@ class Theme():
                 'icon':" 󰣇 ",
                 'fg':self.colors["8"],
                 'bg':self.colors["7"],
-                'callback':{'Button1': lambda : qtile.cmd_spawn('kitty'),}
+                'callback':{'Button1': self.nextwallpaper,}
                 }
         widgets_list = [
                 self.nerd_icon(**archico),

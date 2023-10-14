@@ -56,12 +56,18 @@ class Theme():
                 extrawidget.TextBox(
                     foreground = self.colors["windowname"],
                     text ="󰣇",
-                    padding = 10,
+                    padding = 15,
                     background = self.colors["archico"],
                     font = "JetBrainsMono Nerd Font",
                     fontsize = 18,
                     mouse_callbacks = {'Button1': lambda : qtile.cmd_spawn('kitty'),},
                     **self.powerline({}),
+                    ),
+                extrawidget.CurrentLayoutIcon(
+                    background = self.colors["groupbox"],
+                    fmt ="",
+                    padding = 5,
+                    scale = 0.6,
                     ),
                 extrawidget.GroupBox(
                     background = self.colors["groupbox"],
@@ -153,6 +159,6 @@ class Theme():
                 'size' : 22,
                 'background' : self.colors["bar"]+".0",
                 'opacity' : 1,
-                'margin': [0,7,0,7], 
+                'margin': [0,40,0,40], 
                 }
         return [Screen(top=bar.Bar(widgets=self.init_widgets_list(),**options))]

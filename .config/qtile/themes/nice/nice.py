@@ -1,3 +1,4 @@
+import os
 from libqtile import bar, layout, widget, qtile, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -28,6 +29,10 @@ class Theme():
             "12":"#310651",
             "13":"#dacee3",
             }
+    
+    @lazy.function
+    def nextwallpaper(self):
+        os.system("exec feh --bg-fill --randomize ~/.config/qtile/themes/nice/wallpapers/*")
 
     def init_groups(self):
         return [Group(i,label=k) for i,k in zip(self.groups[0],self.groups[1])]
@@ -36,7 +41,7 @@ class Theme():
     def decor(color,radius):
         return {
                 "decorations":[
-                    RectDecoration(colour=color,radius=radius,filled=True,padding_y=6, group=True),
+                    RectDecoration(colour=color,radius=radius,filled=True,padding_y=4, group=True),
                     ],
                 }
 
@@ -53,7 +58,7 @@ class Theme():
                 text = icon,
                 foreground = fg,
                 fontsize = 16,
-                padding=20,
+                padding=10,
                 mouse_callbacks=callback,
                 **options,
                 )
@@ -75,10 +80,18 @@ class Theme():
             t = ""
         return extrawidget.TextBox(
                 text = t,
-                fontsize=14,
+                fontsize=13,
                 foreground = fg,
                 **mydecor
                 )
+    
+    def sepblank(self):
+        return widget.Sep(size_percent = 60,
+                          margin = 5,
+                          linewidth = 4,
+                          background = self.colors["12"],
+                          foreground = self.colors["12"],
+                          )
 
 
     def init_widgets_list(self):
@@ -93,10 +106,11 @@ class Theme():
         archico = {
                 'icon':" 󰣇 ",
                 'fg':self.colors["9"],
-                'callback':{'Button1': lambda : qtile.cmd_spawn('kitty'),},
+                'callback':{'Button1': self.nextwallpaper,},
                 'options':self.decor(self.colors["1"],9),
                 }
         widgets_list = [
+                self.sepblank(),
                 self.nerd_icon(**archico),
                 self.sep(),
                 extrawidget.GroupBox(
@@ -186,13 +200,14 @@ class Theme():
                         icon_size=20,
                         padding=10,
                         ),
+                self.sepblank(),
                 ]
         return widgets_list
 
     def init_screens(self):
         options = {
-                'size' : 30,
-                'background' : '#FFFFFF.0',
+                'size' : 25,
+                'background' : self.colors['12'],
                 'opacity' : 1,
                 'margin':[5,7,0,7], 
                 }

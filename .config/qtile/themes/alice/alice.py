@@ -1,3 +1,4 @@
+import os
 from libqtile import bar, layout, widget, qtile, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -17,6 +18,10 @@ class Theme():
             "4":["#84e45b", "#84e45b"],
             "5":["#2861d4", "#2861d4"],
             }
+    
+    @lazy.function
+    def nextwallpaper(self):
+        os.system("exec feh --bg-fill --randomize ~/.config/qtile/themes/alice/wallpapers/*")
 
     def init_groups(self):
         return [Group(i,label=k) for i,k in zip(self.groups[0],self.groups[1])]

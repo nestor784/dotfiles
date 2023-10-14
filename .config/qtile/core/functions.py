@@ -12,7 +12,7 @@ def run_powermenu(qtile):
 
 @lazy.function
 def takescreenshot(qtile):
-    os.system("import -window root .screenshots/$(date +%N).jpg")
+    os.system("import -window root .screenshots/$(date +%Y-%m-%d_%T).jpg")
 
 @lazy.function
 def run_theme_manager(qtile):
