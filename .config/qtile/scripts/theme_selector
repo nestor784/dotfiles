@@ -21,6 +21,7 @@ alice='󰓥 ソードアート・オンライン'
 ttgl='󰿗 天元突破グレンラガン'
 hack=' コードギアス 反逆のルルーシュ'
 nice='󰩃 さくら荘のペットな彼女'
+ghibli='󱣻 千と千尋の神隠し'
 yes=' Yes'
 no=' No'
 
@@ -33,7 +34,7 @@ rofi_cmd() {
 }
 
 run_rofi() {
-	echo -e "$alice\n$ttgl\n$hack\n$nice" | rofi_cmd
+	echo -e "$alice\n$ttgl\n$hack\n$nice\n$ghibli" | rofi_cmd
 }
 
 confirm_cmd() {
@@ -56,38 +57,51 @@ run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
 		killall picom
+		killall dunst
 		if [[ $1 == '--alice' ]]; then
-			yes | cp -rf ${dirthemes}/alice/alice.py ${dircore}/theme.py 
-			echo -e "export LS_COLORS=\"\$(vivid generate snazzy)\"" >| ~/.config/kitty/.ls_config
-			yes | cp -rf ${dirthemes}/alice/picom.conf ~/.config/picom/picom.conf
-			ln -sf ~/.config/neofetch/themes/alice ~/.config/neofetch/config.conf
-			ln -sf ~/.config/kitty/kitty-themes/themes/Tokyo\ Night\ Storm.conf ~/.config/kitty/theme.conf
-			feh --bg-fill --randomize ${dirthemes}/alice/wallpapers/*
+			thname="alice"
+			thvivid="snazzy"
+			thkitty="TokyoNightStorm"
+			thspotify="Matte"
+			thsposcheme="Gray-Dark3"
 		elif [[ $1 == '--ttgl' ]]; then
-			yes | cp -rf ${dirthemes}/ttgl/ttgl.py ${dircore}/theme.py 
-			echo -e "export LS_COLORS=\"\$(vivid generate lava)\"" >| ~/.config/kitty/.ls_config
-			yes | cp -rf ${dirthemes}/ttgl/picom.conf ~/.config/picom/picom.conf
-			ln -sf ~/.config/neofetch/themes/ttgl ~/.config/neofetch/config.conf
-			ln -sf ~/.config/kitty/kitty-themes/themes/Earthsong.conf ~/.config/kitty/theme.conf
-			feh --bg-fill --randomize ${dirthemes}/ttgl/wallpapers/*
+			thname="ttgl"
+			thvivid="lava"
+			thkitty="Earthsong"
+			thspotify="Dreary"
+			thsposcheme="Psycho"
 		elif [[ $1 == '--hack' ]]; then
-			yes | cp -rf ${dirthemes}/hack/hack.py ${dircore}/theme.py 
-			echo -e "export LS_COLORS=\"\$(vivid generate catppuccin-frappe)\"" >| ~/.config/kitty/.ls_config
-			yes | cp -rf ${dirthemes}/hack/picom.conf ~/.config/picom/picom.conf
-			ln -sf ~/.config/neofetch/themes/hack ~/.config/neofetch/config.conf
-			ln -sf ~/.config/kitty/kitty-themes/themes/Lavandula.conf ~/.config/kitty/theme.conf
-			feh --bg-fill --randomize ${dirthemes}/hack/wallpapers/*
+			thname="hack"
+			thvivid="catppuccin-frappe"
+			thkitty="Lavandula"
+			thspotify="Sleek"
+			thsposcheme="Elementary"
 		elif [[ $1 == '--nice' ]]; then
-			yes | cp -rf ${dirthemes}/nice/nice.py ${dircore}/theme.py 
-			echo -e "export LS_COLORS=\"\$(vivid generate gruvbox-light-hard)\"" >| ~/.config/kitty/.ls_config
-			yes | cp -rf ${dirthemes}/nice/picom.conf ~/.config/picom/picom.conf
-			ln -sf ~/.config/neofetch/themes/nice ~/.config/neofetch/config.conf
-			ln -sf ~/.config/kitty/kitty-themes/themes/gruvbox_light.conf ~/.config/kitty/theme.conf
-			feh --bg-fill --randomize ${dirthemes}/nice/wallpapers/*
+			thname="nice"
+			thvivid="nord"
+			thkitty="WildCherry"
+			thspotify="Flow"
+			thsposcheme="Violet"
+		elif [[ $1 == '--ghibli' ]]; then
+			thname="ghibli"
+			thvivid="solarized-light"
+			thkitty="Mathias"
+			thspotify="Ziro"
+			thsposcheme="Blue\ Dark"
 		fi
+		ln -sf ${dirthemes}/${thname}/${thname}.py ${dircore}/theme.py 
+		echo -e "export LS_COLORS=\"\$(vivid generate ${thvivid})\"" >| ~/.config/kitty/.ls_config
+		ln -sf ${dirthemes}/${thname}/picom.conf ~/.config/picom/picom.conf
+		ln -sf ${dirthemes}/${thname}/dunstrc ~/.config/dunst/dunstrc
+		ln -sf ${dirthemes}/${thname}/neo${thname}.conf ~/.config/neofetch/config.conf
+		ln -sf ~/.config/kitty/kitty-themes/themes/${thkitty}.conf ~/.config/kitty/theme.conf
+		feh --bg-fill --randomize ${dirthemes}/${thname}/wallpapers/*
 		picom --config $HOME/.config/picom/picom.conf &
+		dunst &
 		sleep 0.5
-		sleep 1 && xdotool key --clearmodifiers super+ctrl+r
+		sleep 0.5 && xdotool key --clearmodifiers super+ctrl+r
+		spicetify config current_theme ${thspotify} color_scheme ${thsposcheme}
+		spicetify apply
 		#qtile run-cmd qtile cmd-obj -o cmd -f reload_config
 		#qtile cmd-obj -o cmd -f reload_config
 	else
@@ -109,5 +123,8 @@ case ${chosen} in
 	;;
 	$nice)
 		run_cmd --nice
+	;;
+	$ghibli)
+		run_cmd --ghibli
 	;;
 esac

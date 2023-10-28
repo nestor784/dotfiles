@@ -91,12 +91,12 @@ class Theme():
                     empty_group_string="nestor",
                     ),
                 extrawidget.Spacer(length=bar.STRETCH,background=self.colors["bar"],**self.powerline({"path":"rounded_right"}),),
-                extrawidget.PulseVolume(
-                    background = self.colors["volume"],
-                    fmt='󰕾 {}',
-                    limit_max_volume=True,
-                    **self.powerline({"path":"forward_slash",}),
-                    ),
+                #extrawidget.PulseVolume(
+                #    background = self.colors["volume"],
+                #    fmt='󰕾 {}',
+                #    limit_max_volume=True,
+                #    **self.powerline({"path":"forward_slash",}),
+                #    ),
                 extrawidget.DF(
                     foreground = self.colors["windowname"],
                     background = self.colors["disk"],
@@ -115,6 +115,8 @@ class Theme():
                     background = self.colors["battery"],
                     format='{char} {percent:.0%}',
                     full_char='󰂂',
+                    notify_below=20,
+                    notification_timeout=0,
                     charge_char="󰂄",
                     discharge_char="󰁼",
                     empty_char="󰂎",

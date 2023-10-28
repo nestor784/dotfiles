@@ -149,6 +149,9 @@ alias ls="lsd --classify --group-directories-first"
 alias lt="ls --tree"
 alias la="ls -a"
 alias lla="ls -la"
+alias deldir="rmdirtrash"
+alias delfile="rmtrash"
+alias rm="echo 'Use delfile,deldir or the full path i.e. usr/bin/rm'"
 source ~/.config/kitty/.ls_config
 
 dotscmd="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
@@ -169,5 +172,6 @@ alias dotfiles_repo_commit="$commitrepo"
 alias dotfiles_repo_push="$pushrepo"
 alias takeshot="import -window root .screenshots/$(date +%N).jpg"
 
-# clear && echo " " | toilet -t -f larry3d " a l i c e " -F border -F rainbow
-clear && neofetch
+#clear && echo " " | toilet -t -f larry3d " a l i c e " -F border -F rainbow
+clear && toilet -t -f emboss " welcome " -F border -F rainbow
+#clear && neofetch

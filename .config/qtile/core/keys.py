@@ -41,6 +41,8 @@ class Keys:
             Key([self.mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
             Key([],"XF86AudioRaiseVolume",lazy.widget["pulsevolume"].increase_vol(), desc="Increase volume"),
             Key([],"XF86AudioLowerVolume",lazy.widget["pulsevolume"].decrease_vol(), desc="Decrease volume"),
+            Key([],"XF86MonBrightnessUp",lf.up_brightness, desc="Increase brightness"),
+            Key([],"XF86MonBrightnessDown",lf.down_brightness, desc="Decrease brightness"),
             Key([],"Print",lf.takescreenshot, desc="Take a screenshot")
         ]
 

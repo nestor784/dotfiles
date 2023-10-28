@@ -17,3 +17,11 @@ def takescreenshot(qtile):
 @lazy.function
 def run_theme_manager(qtile):
     os.system("exec ~/.config/qtile/scripts/theme_selector")
+
+@lazy.function
+def up_brightness(qtile):
+    os.system("exec brightnessctl set +10%")
+
+@lazy.function
+def down_brightness(qtile):
+    os.system("exec brightnessctl set 10%-")

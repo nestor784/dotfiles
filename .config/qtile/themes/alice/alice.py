@@ -6,7 +6,7 @@ from libqtile.lazy import lazy
 
 
 class Theme():
-    name = "Alice"
+    name = "alice"
     groups =  ['12345',[' ',' ',' ',' ',' ']]
     colors = {
             "b_focus":["#7d85a8","#7d85a8"],
@@ -33,7 +33,7 @@ class Theme():
                           background = self.colors["1"],
                           foreground = "#1c2034",
                           )
-    def nerd_icon(self,nerdfont_icon,fg_color,size=15):
+    def nerd_icon(self,nerdfont_icon,fg_color,size=15,callbacks={}):
         return widget.TextBox(
                 font = 'Iosevka Nerd Font',
                 fontsize = size,
@@ -41,6 +41,7 @@ class Theme():
                 foreground = fg_color,
                 background = self.colors["1"],
                 padding=4,
+                mouse_callbacks = callbacks,
                 )
 
     def spacer(self):
@@ -78,6 +79,8 @@ class Theme():
                 widget.Battery(
                     low_foreground=self.colors["3"],
                     low_percentage=0.2,
+                    notify_below=20,
+                    notification_timeout=0,
                     format='{percent:.0%}',
                     font='Hack Nerd Font',
                     foreground=self.colors["2"],
@@ -102,7 +105,7 @@ class Theme():
                     ),
                 self.sep(),
                 self.nerd_icon(' ',self.colors["5"],size=13),
-                self.nerd_icon('󰣇 ',self.colors["5"],size=22),
+                self.nerd_icon('󰣇 ',self.colors["5"],size=22, callbacks={'Button1':self.nextwallpaper}),
                 self.nerd_icon(' ',self.colors["5"],size=4),
                 self.sep(),
                 self.nerd_icon(' ',self.colors["5"]),

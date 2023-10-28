@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-picom --config $HOME/.config/picom/picom.conf &
 
 $HOME/.fehbg &
+picom --config $HOME/.config/picom/picom.conf &
+dunst &

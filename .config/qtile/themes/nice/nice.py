@@ -166,6 +166,8 @@ class Theme():
                 extrawidget.Battery(
                     format='{char} {percent:.0%} ',
                     foreground=self.colors["9"],
+                    notify_below=20,
+                    notification_timeout=0,
                     full_char=' ',
                     charge_char=" ",
                     discharge_char=" ",
