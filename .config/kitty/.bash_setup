@@ -151,7 +151,7 @@ alias la="ls -a"
 alias lla="ls -la"
 alias deldir="rmdirtrash"
 alias delfile="rmtrash"
-alias rm="echo 'Use delfile,deldir or the full path i.e. usr/bin/rm'"
+#alias rm="echo 'Use delfile,deldir or the full path i.e. usr/bin/rm'"
 source ~/.config/kitty/.ls_config
 
 dotscmd="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"

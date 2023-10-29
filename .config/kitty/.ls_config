@@ -1,1 +1,1 @@
-export LS_COLORS="$(vivid generate catppuccin-frappe)"
+export LS_COLORS="$(vivid generate solarized-light)"

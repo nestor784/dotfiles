@@ -126,7 +126,7 @@ class Theme():
                     **groupboxdecor,
                     ),
                 self.sep(),
-                extrawidget.PulseVolume(
+                extrawidget.Volume(
                     fmt='󰕾 {}',
                     padding=10,
                     limit_max_volume=True,

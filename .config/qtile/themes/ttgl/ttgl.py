@@ -1,7 +1,7 @@
 from libqtile import bar, layout, widget, qtile, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-
+import os
 
 
 class Theme():
@@ -136,7 +136,7 @@ class Theme():
                         }
                     ),
                 self.spacer(fg=self.colors["2"],bg=self.colors["6"],d=False),
-                widget.PulseVolume(
+                widget.Volume(
                     fmt='󰕾 {}  ',
                     limit_max_volume=True,
                     foreground=self.colors["1"],

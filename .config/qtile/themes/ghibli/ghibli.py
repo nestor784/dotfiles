@@ -12,7 +12,7 @@ from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 
 class Theme():
     name = "ghibli"
-    groups =  ['123',['','','']]
+    groups =  ['12345',['','','','','']]
     colors = {
             "b_focus":"#61677A",
             "b_normal":"#272829",
@@ -109,14 +109,14 @@ class Theme():
                     length=bar.STRETCH,
                     **self.powerline({"path":"forward_slash"}),
                     ),
-                #extrawidget.PulseVolume(
-                #    fmt = '{}',
-                #    background = self.colors["night"], 
-                #    emoji = True,
-                #    emoji_list = ["󰝟","󰕿","󰖀","󰕾"],
-                #    limit_max_volume=True,
-                #    **self.powerline({"path":"forward_slash",}),
-                #    ),
+                extrawidget.Volume(
+                    fmt = '{}',
+                    background = self.colors["night"], 
+                    emoji = True,
+                    emoji_list = ["󰝟","󰕿","󰖀","󰕾"],
+                    limit_max_volume=True,
+                    **self.powerline({"path":"forward_slash",}),
+                    ),
                 extrawidget.Battery(
                     background = "#141415",
                     format='{char}',

@@ -1,1 +1,1 @@
-/home/nestor/.config/qtile/themes/hack/hack.py
+/home/nestor/.config/qtile/themes/ghibli/ghibli.py

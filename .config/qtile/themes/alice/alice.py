@@ -128,7 +128,7 @@ class Theme():
                     ),
                 self.sep(),
                 self.nerd_icon('󰓃',self.colors["5"]),
-                widget.PulseVolume(
+                widget.Volume(
                     fmt='{}',
                     limit_max_volume=True,
                     foreground=self.colors["2"],
