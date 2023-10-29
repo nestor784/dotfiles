@@ -157,7 +157,7 @@ source ~/.config/kitty/.ls_config
 dotscmd="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dotfiles_repo="$dotscmd"
 
-config_folders=(alacritty kitty neofetch qutebrowser nvim qtile rofi)
+config_folders=(ranger kitty neofetch nvim qtile rofi picom dunst)
 config_folders_str=""
 for item in "${config_folders[@]}"; do
 	config_folders_str+=".config/$item/ "
