@@ -49,7 +49,7 @@ return require('packer').startup(function()
 	use "nvim-lua/plenary.nvim"
 
 	--Autocompletado de codigo
-	use {'neoclide/coc.nvim', branch = 'release'}
+	-- use {'neoclide/coc.nvim', branch = 'release'}
 
 	-- Usar relative and absolute numbers
 	use 'nkakouros-original/numbers.nvim'
@@ -65,5 +65,13 @@ return require('packer').startup(function()
 
 	-- Hex colores highlighting
 	use 'norcalli/nvim-colorizer.lua'
+
+	-- LSP 
+	use 'neovim/nvim-lspconfig'
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-nvim-lsp'
+	-- Snips
+	use 'SirVer/ultisnips'
+	use 'quangnguyen30192/cmp-nvim-ultisnips'
 
 end)

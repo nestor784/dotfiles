@@ -1,5 +1,5 @@
 local g = vim.g
-
+--[[
 g.coc_global_extensions = {
 	'coc-lua',
 	'coc-css',
@@ -33,3 +33,4 @@ vim.o.hidden = true
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.updatetime = 300
+]]--
