@@ -25,3 +25,7 @@ def up_brightness(qtile):
 @lazy.function
 def down_brightness(qtile):
     os.system("exec brightnessctl set 10%-")
+
+@lazy.function
+def change_xkb_layout(qtile):
+    os.system("exec ~/.config/qtile/scripts/chlanguage.sh")

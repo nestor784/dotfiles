@@ -100,8 +100,8 @@ run_cmd() {
 		dunst &
 		sleep 0.5
 		sleep 0.5 && xdotool key --clearmodifiers super+ctrl+r
-		spicetify config current_theme ${thspotify} color_scheme ${thsposcheme}
-		spicetify apply
+		#spicetify config current_theme ${thspotify} color_scheme ${thsposcheme}
+		#spicetify apply
 		#qtile run-cmd qtile cmd-obj -o cmd -f reload_config
 		#qtile cmd-obj -o cmd -f reload_config
 	else

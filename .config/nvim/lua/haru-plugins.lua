@@ -42,7 +42,6 @@ return require('packer').startup(function()
 		      "MunifTanjim/nui.nvim",
     			}
   	}
-
 	-- Generate lorem ipsum text
 	use { "derektata/lorem.nvim" }
 
@@ -66,4 +65,5 @@ return require('packer').startup(function()
 
 	-- Hex colores highlighting
 	use 'norcalli/nvim-colorizer.lua'
+
 end)

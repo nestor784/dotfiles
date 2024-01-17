@@ -43,7 +43,9 @@ class Keys:
             Key([],"XF86AudioLowerVolume",lazy.widget["volume"].decrease_vol(), desc="Decrease volume"),
             Key([],"XF86MonBrightnessUp",lf.up_brightness, desc="Increase brightness"),
             Key([],"XF86MonBrightnessDown",lf.down_brightness, desc="Decrease brightness"),
-            Key([],"Print",lf.takescreenshot, desc="Take a screenshot")
+            Key([],"Print",lf.takescreenshot, desc="Take a screenshot"),
+            Key([self.mod, "control"],"p",lazy.spawn('coreshot'), desc="Take a screenshot"),
+            Key([self.mod, "control"],"n",lf.change_xkb_layout, desc="Toggle en-us and latam keyboard"),
         ]
 
     def init_keyextend(self,i):

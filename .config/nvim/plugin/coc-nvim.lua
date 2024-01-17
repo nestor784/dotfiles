@@ -4,6 +4,7 @@ g.coc_global_extensions = {
 	'coc-lua',
 	'coc-css',
 	'coc-html',
+	'coc-blade',
 	'coc-htmldjango',
 	'coc-clangd',
 	'coc-pyright',

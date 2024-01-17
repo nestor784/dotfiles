@@ -158,8 +158,8 @@ class Theme():
                     background = "#000000",
                     text=" ",
                     mouse_callbacks = {
-                        'Button1': self.show_calendar("prev"),
-                        'Button2': self.show_calendar("curr"),
+                        'Button2': self.show_calendar("prev"),
+                        'Button1': self.show_calendar("curr"),
                         'Button3': self.show_calendar("next"),
                         },
                     ),

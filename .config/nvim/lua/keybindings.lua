@@ -3,6 +3,7 @@ vim.g.mapleader = ","
 
 map.set('n','<C-n>',':Neotree float toggle<CR>')
 map.set('n','<leader>a','<Plug>(coc-codeaction-selected)')
+vim.cmd('nnoremap <c-z> <nop>')
 
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = 'python',
