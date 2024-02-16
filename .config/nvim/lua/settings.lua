@@ -28,7 +28,6 @@ o.swapfile = false
 o.undofile = true
 o.undodir = '/home/nestor/.config/nvim/undo'
 
--- Nvim tree toggle
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 o.termguicolors = true
@@ -42,4 +41,4 @@ api.nvim_create_autocmd(
 )
 
 -- Lua initialization file
-vim.cmd [[colorscheme nightfly]]
+vim.cmd[[colorscheme neon]]
